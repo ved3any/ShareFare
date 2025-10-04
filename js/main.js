@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let ws;
     let html5QrCode;
 
+    // Helper to get the correct WebSocket URL for current environment
+    function getWebSocketUrl(id) {
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const host = window.location.host;
+        return `${protocol}//${host}/ws?id=${id}`;
+    }
+
     // Show scanner to send files
     sendBtn.addEventListener('click', () => {
         scannerContainer.style.display = 'block';
@@ -63,14 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Generate a unique ID and display it as a QR code
     function generateQRCode() {
-        const uniqueId = `ws://${window.location.hostname}:8080/ws?id=${Math.random().toString(36).substring(2, 15)}`;
+        const uniqueId = Math.random().toString(36).substring(2, 15);
+        const wsUrl = getWebSocketUrl(uniqueId);
         qrcodeContainer.innerHTML = '';
         new QRCode(qrcodeContainer, {
-            text: uniqueId,
+            text: wsUrl,
             width: 256,
             height: 256,
         });
-        startWebSocketServer(uniqueId);
+        startWebSocketServer(wsUrl);
     }
 
     // Connect to the WebSocket server
@@ -86,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // A real implementation requires a WebSocket server.
         // For this example, we'll simulate the connection.
         console.log(`WebSocket server started at ${serverUrl}`);
-        ws = new WebSocket(serverUrl); // This will fail without a real server
+        ws = new WebSocket(serverUrl);
         setupWebSocketEvents();
     }
 
