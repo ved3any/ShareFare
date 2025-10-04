@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShareFare - Fast & Easy File Sharing</title>
+    <link rel="stylesheet" href="bootstrap/ui-clean_bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>ShareFare</h1>
+            <p>Seamlessly share files between devices.</p>
+        </div>
+
+        <div class="main-buttons">
+            <button id="send-btn" class="btn btn-primary btn-lg">Send</button>
+            <button id="receive-btn" class="btn btn-secondary btn-lg">Receive</button>
+        </div>
+
+        <div id="scanner-container" class="scanner-container" style="display: none;">
+            <div id="qr-reader"></div>
+        </div>
+
+        <div id="receiver-container" style="display: none;">
+            <h2>Scan this QR Code</h2>
+            <div id="qrcode"></div>
+            <div id="received-files"></div>
+        </div>
+
+        <div id="file-transfer-container" style="display: none;">
+            <input type="file" id="file-input" multiple>
+            <button id="send-file-btn" class="btn btn-success">Send Files</button>
+        </div>
+
+        <div id="status"></div>
+
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

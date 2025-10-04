@@ -1,0 +1,90 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #007bff;
+    animation: fadeInDown 1s ease;
+}
+
+.header p {
+    font-size: 1.2em;
+    color: #6c757d;
+    animation: fadeInUp 1s ease;
+}
+
+.main-buttons .btn {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    animation: zoomIn 1s ease;
+}
+
+.main-buttons .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#scanner-container, #receiver-container, #file-transfer-container {
+    margin-top: 30px;
+    animation: fadeIn 1s ease;
+}
+
+#qr-reader {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 5px solid #007bff;
+    border-radius: 10px;
+}
+
+#qrcode {
+    width: 256px;
+    height: 256px;
+    margin: 20px auto;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
