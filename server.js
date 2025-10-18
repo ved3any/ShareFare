@@ -59,7 +59,7 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (message) => {
         const messageString = message.toString();
-        console.log('Received message:', messageString);
+        console.log('Received a message');
         // Broadcast the message to all other clients
         wss.clients.forEach((client) => {
             if (client !== ws && client.readyState === WebSocket.OPEN) {

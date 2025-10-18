@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--bg);
+    color: var(--text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,25 +11,36 @@ body {
 
 .container {
     text-align: center;
-    background-color: #fff;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    max-width: 450px;
 }
 
 .header h1 {
     font-size: 3em;
     margin-bottom: 10px;
-    color: #007bff;
+    color: var(--brand);
     animation: fadeInDown 1s ease;
+}
+
+.header {
+    margin-bottom: 30px;
 }
 
 .header p {
     font-size: 1.2em;
-    color: #6c757d;
+    color: var(--muted);
     animation: fadeInUp 1s ease;
 }
+
+.header span {
+    font-size: 0.6em;
+    animation: fadeInUp 1s ease;
+}
+
+
 
 .main-buttons .btn {
     margin: 10px;
@@ -40,9 +51,21 @@ body {
     animation: zoomIn 1s ease;
 }
 
+#file-transfer-container {
+    margin-top: 30px;
+    animation: fadeIn 1s ease;
+    align-items: center; 
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column;
+
+}
+
 .main-buttons .btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease;
+    color: var(--accent);
 }
 
 #scanner-container, #receiver-container, #file-transfer-container {
@@ -51,7 +74,16 @@ body {
 }
 
 #qr-reader {
-    width: 100%;
+    width: 100%;/* ... existing code ... */
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+#file-input {
+    display: none;
+}
+
     max-width: 500px;
     margin: 0 auto;
     border: 5px solid #007bff;
@@ -59,9 +91,32 @@ body {
 }
 
 #qrcode {
-    width: 256px;
-    height: 256px;
     margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background: var(--panel-2);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+#qr-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#qrcode img {
+    border-radius: 10px;
 }
 
 #status {

@@ -9,10 +9,11 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="panel container">
         <div class="header">
             <h1>ShareFare</h1>
             <p>Seamlessly share files between devices.</p>
+            <span class="pill success">No App Download Required!</span>
         </div>
 
         <div class="main-buttons">
@@ -20,7 +21,7 @@
             <button id="receive-btn" class="btn btn-secondary btn-lg">Receive</button>
         </div>
 
-        <div id="scanner-container" class="scanner-container" style="display: none;">
+        <div id="scanner-container" class="scanner-container" style="display: none; animation: fadeIn 1s ease; color: var(--accent);">
             <div id="qr-reader"></div>
         </div>
 
@@ -31,12 +32,14 @@
         </div>
 
         <div id="file-transfer-container" style="display: none;">
-            <input type="file" id="file-input" multiple>
-            <button id="send-file-btn" class="btn btn-success">Send Files</button>
+            <input style="color: var(--muted); margin-left: 50px;" type="file" id="file-input" multiple>
+            <button id="send-file-btn" class="btn success">Send Files</button>
         </div>
 
         <div id="status"></div>
+        </div>
 
+ 
     </div>
 
     <script src="https://unpkg.com/html5-qrcode"></script>

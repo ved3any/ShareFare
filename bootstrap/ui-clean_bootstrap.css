@@ -357,7 +357,7 @@ blockquote {
 
 .alert.danger {
     background: rgba(239, 68, 68, .12);
-    color: #fecaca;
+    color: #fecaca
 }
 
 .alert.warn {
@@ -526,10 +526,9 @@ th {
     border-bottom: 2px solid #001118;
     transform: rotate(-45deg) scale(0);
     transition: transform 0.2s ease;
-    transform: translateY(10px);
     opacity: 0.9;
 }
 
 .checkbox input:checked ~ .checkbox-box::after {
-    transform: rotate(-45deg) scale(1) translate(2px,-1px);
+    transform: rotate(-45deg) scale(1);
 }

@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const mainbuttons = document.querySelector('.main-buttons');
+    const header = document.querySelector('.header');
     const sendBtn = document.getElementById('send-btn');
     const receiveBtn = document.getElementById('receive-btn');
     const scannerContainer = document.getElementById('scanner-container');
@@ -26,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         scannerContainer.style.display = 'block';
         receiverContainer.style.display = 'none';
         fileTransferContainer.style.display = 'none';
+        mainbuttons.style.display = 'none';
+        header.querySelector('h1').innerText = 'Send';
+        header.querySelector('p').innerText = 'Scan the QR code on the other receiver device to send files.';
         startScanner();
     });
 
@@ -34,6 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         scannerContainer.style.display = 'none';
         receiverContainer.style.display = 'block';
         fileTransferContainer.style.display = 'none';
+        mainbuttons.style.display = 'none';
+        mainbuttons.style.display = 'none';
+        header.querySelector('h1').innerText = 'Receive';
+        header.querySelector('p').innerText = 'Scan the QR code on the other sender device to receive files.';
         generateQRCode();
     });
 
@@ -44,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { facingMode: "environment" }, // Use the back camera
             {
                 fps: 10,
-                qrbox: 250
+                qrbox: 190
             },
             onScanSuccess,
             onScanFailure
@@ -77,7 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
             text: wsUrl,
             width: 256,
             height: 256,
+            colorLight: "#e5e5e6ff",
+            colorDark: "#000a3eff",
+            correctLevel: QRCode.CorrectLevel.H
         });
+
+        const logoImg = document.createElement('img');
+        logoImg.src = "images/ShareFareLogo.png";
+        logoImg.id = 'qr-logo';
+        qrcodeContainer.appendChild(logoImg);
+
         startWebSocketServer(wsUrl);
     }
 
@@ -85,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function connectWebSocket(serverUrl) {
         ws = new WebSocket(serverUrl);
         setupWebSocketEvents();
-        fileTransferContainer.style.display = 'block';
+        fileTransferContainer.style.display = 'flex';
     }
 
     // Start a WebSocket server (for the receiver)
