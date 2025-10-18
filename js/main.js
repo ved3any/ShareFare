@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { facingMode: "environment" }, // Use the back camera
             {
                 fps: 10,
-                qrbox: 190
+                qrbox: 195
             },
             onScanSuccess,
             onScanFailure
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle failed QR code scan
     function onScanFailure(error) {
-        // console.warn(`Code scan error = ${error}`);
+            // console.warn(`Code scan error = ${error}`);
     }
 
     // Generate a unique ID and display it as a QR code
@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             text: wsUrl,
             width: 256,
             height: 256,
-            colorLight: "#e5e5e6ff",
-            colorDark: "#000a3eff",
+            colorLight: "#000000ff",
+            colorDark: "#ffffffff",
             correctLevel: QRCode.CorrectLevel.H
         });
 
