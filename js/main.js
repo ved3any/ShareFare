@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const receiverContainer = document.getElementById('receiver-container');
     const fileTransferContainer = document.getElementById('file-transfer-container');
     const qrReader = document.getElementById('qr-reader');
+    const sharebtn = document.getElementById('sharebtn');
+    const shrcodeContainer = document.getElementById('shrcode');
     const qrcodeContainer = document.getElementById('qrcode');
     const fileInput = document.getElementById('file-input');
     const sendFileBtn = document.getElementById('send-file-btn');
@@ -15,6 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let ws;
     let html5QrCode;
+
+        shrcodeContainer.innerHTML = '';
+        new QRCode(shrcodeContainer, {
+            text: window.location.href,
+            width: 196,
+            height: 196,
+            colorLight: "#000000ff",
+            colorDark: "#ffffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+    const overlay = document.getElementById('overlay');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    let modalOpener = null;
+    function close(){ overlay.classList.remove('show'); if(modalOpener) modalOpener.focus(); }
+    openModal.addEventListener('click', (e)=>{ modalOpener = e.currentTarget; overlay.classList.add('show'); });
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) close(); });
+    closeModal.addEventListener('click', close);
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
 
     // Helper to get the correct WebSocket URL for current environment
     function getWebSocketUrl(id) {
@@ -27,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', () => {
         scannerContainer.style.display = 'block';
         receiverContainer.style.display = 'none';
+        sharebtn.style.display = 'none';
         fileTransferContainer.style.display = 'none';
         mainbuttons.style.display = 'none';
         header.querySelector('h1').innerText = 'Send';
@@ -37,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate and show QR code to receive files
     receiveBtn.addEventListener('click', () => {
         scannerContainer.style.display = 'none';
+        sharebtn.style.display = 'none';
         receiverContainer.style.display = 'block';
         fileTransferContainer.style.display = 'none';
         mainbuttons.style.display = 'none';

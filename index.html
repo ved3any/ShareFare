@@ -1,15 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShareFare - Fast & Easy File Sharing</title>
     <link rel="stylesheet" href="bootstrap/ui-clean_bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .code-block {
+            position: relative;
+        }
+
+        pre {
+            margin-top: 8px;
+            background: #111827;
+            padding: 14px;
+            border-radius: var(--radius);
+            overflow-x: auto;
+            font-size: .9rem;
+        }
+
+        code {
+            color: var(--accent);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            background: var(--panel);
+            color: var(--muted);
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            color: var(--brand);
+        }
+    </style>
 </head>
+
 <body>
 
+    <div class="overlay" id="overlay">
+        <div role="dialog" class="modal" style="max-width: 400px; width: fit-content; transition: all 0.3s ease-in-out;">
+            <div class="modal-header">
+                <h3 class="text-center" style="margin-top: 20px;">ShareFare - Fast & Easy File Sharing</h3>
+                <h4 class="text-center muted">Scan For More!</h4>
+                <div style="margin-top: 20px; display: flex; align-items: center; justify-content: center;"
+                    id="shrcode" ></div>
+                <pre class="code-block"><code>https://sharefare-fc0l.onrender.com</code></pre>
+                <button style="margin-top: 15px;" type="button" class="btn" id="closeModal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="panel container">
+        <div style="padding-left: 15rem; " class="sharebtn" id="sharebtn">
+            <button style="background-color: transparent; border: none; transition: all 0.3s ease-in-out;" id="openModal">
+                <i class="fa-solid fa-share-nodes" style="color: #ffffff; "></i></button>
+        </div>
         <div class="header">
             <h1>ShareFare</h1>
             <p>Seamlessly share files between devices.</p>
@@ -21,7 +92,8 @@
             <button id="receive-btn" class="btn btn-secondary btn-lg">Receive</button>
         </div>
 
-        <div id="scanner-container" class="scanner-container" style="display: none; animation: fadeIn 1s ease; color: var(--accent);">
+        <div id="scanner-container" class="scanner-container"
+            style="display: none; animation: fadeIn 1s ease; color: var(--accent);">
             <div id="qr-reader"></div>
         </div>
 
@@ -37,13 +109,14 @@
         </div>
 
         <div id="status"></div>
-        </div>
+    </div>
 
- 
+
     </div>
 
     <script src="https://unpkg.com/html5-qrcode"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
